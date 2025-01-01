@@ -44,7 +44,7 @@ then
     mysql_secure_installation --set-root-pass ${db_root_password} &>>LOGFILE
     VALIDATE $? "Db_root_password is creation.."
 else
-    echo "db password is already exist....$Y SKIPPING $N"
+    echo -e "db password is already exist....$Y SKIPPING $N"
 fi
 
 
