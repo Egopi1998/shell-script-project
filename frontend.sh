@@ -29,23 +29,23 @@ VALIDATE $? "installation of nginx.."
 systemctl enable nginx 
 VALIDATE $? "enable of nginx.."
 
-systemctl start nginx
+systemctl start nginx 
 VALIDATE $? "starting of nginx.."
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "removing of olg html file.."
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "downloading of frontend code.."
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>>$LOGFILE
 VALIDATE $? "changing to directory /usr/share/nginx/html.."
 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE $? "frontend code extracting to the /usr/share/nginx/html.."
 
 cp /home/ec2-user/shell-script-project/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
 VALIDATE $? "Copied expense conf"
 
-systemctl restart nginx
+systemctl restart nginx &>>$LOGFILE
 VALIDATE $? "restarting of nginx.."
