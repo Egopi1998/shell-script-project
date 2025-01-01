@@ -38,12 +38,12 @@ VALIDATE $? "starting mysql.."
 
 mysql -h db.hellandhaven.xyz -uroot -p${db_root_password} -e 'show databases;' &>>$LOGFILE
 
-if [ $? -eq 0 ]
+if [ $? -ne 0 ]
 then
-    echo "db password is already exist....$Y SKIPPING $N"
-else
     mysql_secure_installation --set-root-pass ${db_root_password} &>>LOGFILE
     VALIDATE $? "Db_root_password is creation.."
+else
+    echo "db password is already exist....$Y SKIPPING $N"
 fi
 
 
