@@ -13,7 +13,7 @@ VALIDATE(){
     then
         echo " $2..$G SUCCESS $N "
     else
-        echo " $2 ...$R FAILED $N"
+        echo " $2 ...$R FAILED $N "
         exit 1
     fi
 }
