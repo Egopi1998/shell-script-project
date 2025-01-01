@@ -26,8 +26,8 @@ else
     echo "you are super user, please wait i am processing your request"
 fi             # fi means exiting from if loop
 #installing/configuring db
+echo "please wait installing mysql-server"
 dnf install mysql-server -y &>>$LOGFILE
-echo "please wait installing mysql"
 VALIDATE $? " installing mysql.."
 
 systemctl enable mysqld &>>$LOGFILE
