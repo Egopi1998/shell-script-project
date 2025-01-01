@@ -77,7 +77,7 @@ VALIDATE $? "backend service enable .."
 dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "installing mysql .."
 
-mysql -h db.hellandhaven.xyz -uroot -p${db_root_passowrd} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h 172.31.23.231 -uroot -p${db_root_passowrd} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "schema loading ..."
 
 systemctl restart backend &>>$LOGFILE

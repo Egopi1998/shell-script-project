@@ -36,7 +36,7 @@ VALIDATE $? "enabling mysql.."
 systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "starting mysql.."
 
-mysql -h db.hellandhaven.xyz -uroot -p${db_root_password} -e 'show databases;' &>>/dev/null
+mysql -h  172.31.23.231 -uroot -p${db_root_password} -e 'show databases;' &>>LOGFILE
 
 if [ $? -ne 0 ]
 then
