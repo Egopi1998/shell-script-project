@@ -36,7 +36,7 @@ dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "nodejs installation is..."
 
 id -u expense &>>$LOGFILE
-if[ $? -eq 0 ]
+if [ $? -eq 0 ]
 then
     echo -e "user Expense is already Exist .. $Y SKIPPING $N"
 else 
