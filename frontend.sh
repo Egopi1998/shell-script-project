@@ -2,16 +2,16 @@ USERID=$(id -u)  #when we run id -u we get user id and store it to USERID
 TIMESTAMP=$(date +%F-%H-%M)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
-R=”\e[31m”
-G=”\e[32m”
-Y=”\e[33m”
-N=”\e[0m”
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo -e " $2..$G SUCCESS $N "
+        echo -e " $2..$G SUCCESS $N"
     else
-        echo -e " $2 ...$R FAILED $N"
+        echo -e " $2 ..$R FAILED $N"
         exit 1
     fi
 }
