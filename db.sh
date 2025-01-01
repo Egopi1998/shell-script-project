@@ -9,11 +9,11 @@ N=”\E[0m”
 echo " please enter your db password"
 read -s db_root_password
 VALIDATE(){
-    if [ $1 -el 0 ]
+    if [ $1 -eq 0 ]
     then
-        echo " $2..$G SUCCESS $N "
+        echo -e " $2..$G SUCCESS $N "
     else
-        echo " $2 ...$R FAILED $N "
+        echo -e " $2 ...$R FAILED $N "
         exit 1
     fi
 }
@@ -38,7 +38,7 @@ VALIDATE $? " starting mysql.."
 
 mysql -h db.hellandhaven.xyz -uroot -p${db_root_password} -e 'show databases;' &>>$LOGFILE
 
-if [ $? -el 0 ]
+if [ $? -eq 0 ]
 then
     echo "db password is already exist....$Y SKIPPING $N"
 else

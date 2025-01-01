@@ -9,11 +9,11 @@ N=”\E[0m”
 echo " please enter your db password"
 read -s db_root_password
 VALIDATE(){
-    if [ $1 -el 0 ]
+    if [ $1 -eq 0 ]
     then
-        echo " $2..$G SUCCESS $N "
+        echo -e " $2..$G SUCCESS $N "
     else
-        echo " $2 ...$R FAILED $N"
+        echo -e " $2 ...$R FAILED $N"
         exit 1
     fi
 }
@@ -36,9 +36,9 @@ dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "nodejs installation is..."
 
 id -u expense
-if[ $? -el 0 ]
+if[ $? -eq 0 ]
 then
-    echo "user Expense is already Exist .. $Y SKIPPING $N"
+    echo -e "user Expense is already Exist .. $Y SKIPPING $N"
 else 
     useradd expense
     VALIDATE $? "user expense creation.."
