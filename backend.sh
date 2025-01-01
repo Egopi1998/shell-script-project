@@ -26,13 +26,13 @@ else
     echo "you are super user, please wait i am processing your request"
 fi             # fi means exiting from if loop
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$LOGFILE
 VALIDATE $? "Disabling the nodejs is ..." #it will disable the default nodejs version
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$LOGFILE
 VALIDATE $? "enabling nodejs:20 is ..."
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "nodejs installation is..."
 
 id -u expense
@@ -44,43 +44,43 @@ else
     VALIDATE $? "user expense creation.."
 fi
 
-rm -rf /app
+rm -rf /app &>>$LOGFILE
 VALIDATE $? "removing old /app directory.."
 
-mkdir /app
+mkdir /app &>>$LOGFILE
 VALIDATE $? "creating new /app directory.."
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE $? "downloading backend.zip.."
 
-cd /app
+cd /app &>>$LOGFILE
 VALIDATE $? "changing directory to /app .."
 
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE $? "unzip to /app .."
 
-npm install
+npm install &>>$LOGFILE
 VALIDATE $? "npm install .."
 
-cp ./shell-script-project/backend.service /etc/sustemd/system/default.d/backend.service
+cp /home/ec2-user/shell-script-project/backend.service /etc/sustemd/system/default.d/backend.service &>>$LOGFILE
 VALIDATE $? "copying backend.service .."
 
-systemctl daemon-reload
+systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? "daemon-reload .."
 
-systemctl start backend
+systemctl start backend &>>$LOGFILE
 VALIDATE $? "starting the backend .."
 
-systemctl enable backend
+systemctl enable backend &>>$LOGFILE
 VALIDATE $? "backend service enable .."
 
-dnf install mysql -y
+dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "installing mysql .."
 
-mysql -h db.hellandhaven.xyz -uroot -p${db_root_passowrd} < /app/schema/backend.sql
+mysql -h db.hellandhaven.xyz -uroot -p${db_root_passowrd} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "schema loading ..."
 
-systemctl restart backend
+systemctl restart backend &>>$LOGFILE
 VALIDATE $? "backend service restart .."
 
 
