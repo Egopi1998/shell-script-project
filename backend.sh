@@ -62,7 +62,7 @@ VALIDATE $? "unzip to /app .."
 npm install &>>$LOGFILE
 VALIDATE $? "npm install .."
 
-cp /home/ec2-user/shell-script-project/backend.service /etc/sustemd/system/default.d/backend.service &>>$LOGFILE
+cp /home/ec2-user/shell-script-project/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "copying backend.service .."
 
 systemctl daemon-reload &>>$LOGFILE
