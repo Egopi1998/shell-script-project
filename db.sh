@@ -27,6 +27,7 @@ else
 fi             # fi means exiting from if loop
 #installing/configuring db
 echo "please wait installing mysql-server"
+
 dnf install mysql-server -y &>>$LOGFILE
 VALIDATE $? "installing mysql.."
 
